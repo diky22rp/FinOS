@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1063937262701",
+    "project_id": "finos-158cf",
+    "storage_bucket": "finos-158cf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063937262701:android:ce089a5962af122437ab64",
+        "android_client_info": {
+          "package_name": "com.drp.finos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdnmu6wEJkKcqhss6pWQAuUEIkIHh7PUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
