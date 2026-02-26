@@ -8,5 +8,5 @@ abstract class AuthRepository {
     String? displayName,
   });
   Future<void> signOut();
-  Stream<UserEntity?> get user;
+  Future<UserEntity?> getCurrentUser();
 }

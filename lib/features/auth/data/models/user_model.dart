@@ -1,29 +1,24 @@
 import 'package:finos/features/auth/domain/entities/user_entity.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user_model.freezed.dart';
-part 'user_model.g.dart';
+class UserModel {
+  final String id;
+  final String email;
+  final String? displayName;
 
-@freezed
-class UserModel with _$UserModel {
-  const factory UserModel({
-    required String id,
-    required String email,
-    String? displayName,
-    String? photoUrl,
-  }) = _UserModel;
+  UserModel({required this.id, required this.email, this.displayName});
 
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
-}
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    id: json['id'] as String,
+    email: json['email'] as String,
+    displayName: json['displayName'] as String?,
+  );
 
-extension UserModelX on UserModel {
-  UserEntity toEntity() {
-    return UserEntity(
-      id: id,
-      email: email,
-      displayName: displayName,
-      photoUrl: photoUrl,
-    );
-  }
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'email': email,
+    'displayName': displayName,
+  };
+
+  UserEntity toEntity() =>
+      UserEntity(id: id, email: email, displayName: displayName);
 }

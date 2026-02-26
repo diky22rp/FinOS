@@ -1,17 +1,14 @@
-part of 'auth_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:finos/features/auth/domain/entities/user_entity.dart';
 
-abstract class AuthState {}
+part 'auth_state.freezed.dart';
 
-class AuthInitial extends AuthState {}
-
-class AuthLoading extends AuthState {}
-
-class AuthAuthenticated extends AuthState {
-  final UserEntity user;
-  AuthAuthenticated(this.user);
-}
-
-class AuthError extends AuthState {
-  final String message;
-  AuthError(this.message);
+@freezed
+class AuthState with _$AuthState {
+  const factory AuthState.initial() = _Initial;
+  const factory AuthState.authenticated(UserEntity user) = _Authenticated;
+  const factory AuthState.unauthenticated() = _Unauthenticated;
+  const factory AuthState.loading() = _Loading;
+  const factory AuthState.error(String message) = _Error;
+  const factory AuthState.success(String message) = _Success;
 }

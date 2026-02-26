@@ -20,7 +20,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       id: user.uid,
       email: user.email ?? '',
       displayName: user.displayName,
-      photoUrl: user.photoURL,
     );
   }
 
@@ -45,7 +44,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       id: updatedUser?.uid ?? user.uid,
       email: updatedUser?.email ?? user.email ?? '',
       displayName: updatedUser?.displayName ?? displayName,
-      photoUrl: updatedUser?.photoURL,
     );
   }
 
@@ -53,14 +51,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> signOut() => _firebaseAuth.signOut();
 
   @override
-  Stream<UserModel?> get user => _firebaseAuth.authStateChanges().map(
-    (user) => user == null
-        ? null
-        : UserModel(
-            id: user.uid,
-            email: user.email ?? '',
-            displayName: user.displayName,
-            photoUrl: user.photoURL,
-          ),
-  );
+  Future<UserModel?> getCurrentUser() async {
+    final user = _firebaseAuth.currentUser;
+    if (user == null) return null;
+    return UserModel(
+      id: user.uid,
+      email: user.email ?? '',
+      displayName: user.displayName,
+    );
+  }
 }

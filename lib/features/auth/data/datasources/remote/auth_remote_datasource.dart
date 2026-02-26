@@ -8,5 +8,5 @@ abstract class AuthRemoteDataSource {
     String? displayName,
   });
   Future<void> signOut();
-  Stream<UserModel?> get user;
+  Future<UserModel?> getCurrentUser();
 }

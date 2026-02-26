@@ -3,11 +3,11 @@ import 'package:finos/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-class SignInUseCase {
+class SignUpUseCase {
   final AuthRepository repository;
-  SignInUseCase(this.repository);
+  SignUpUseCase(this.repository);
 
-  Future<UserEntity?> call(String email, String password) {
-    return repository.signIn(email, password);
+  Future<UserEntity?> call(String email, String password, String displayName) {
+    return repository.signUp(email, password, displayName: displayName);
   }
 }

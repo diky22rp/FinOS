@@ -1,4 +1,4 @@
-import 'package:finos/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:finos/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:finos/features/auth/data/models/user_model.dart';
 import 'package:finos/features/auth/domain/entities/user_entity.dart';
 import 'package:finos/features/auth/domain/repositories/auth_repository.dart';
@@ -33,7 +33,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> signOut() => remoteDataSource.signOut();
 
   @override
-  Stream<UserEntity?> get user => remoteDataSource.user.map(
-    (UserModel? userModel) => userModel?.toEntity(),
-  );
+  Future<UserEntity?> getCurrentUser() async {
+    final userModel = await remoteDataSource.getCurrentUser();
+    return userModel?.toEntity();
+  }
 }
